@@ -1,0 +1,34 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CSR2026_Exploratory.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:UserControls="using:CSR2026_Exploratory"
+        mc:Ignorable="d" d:DesignWidth="907" d:DesignHeight="435"
+        x:Class="CSR2026_Exploratory.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="CSR2026_Exploratory"
+		Height="435" Width="907"
+		MinWidth="907" MinHeight="435">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>	
+	
+	<Grid RowDefinitions="50,*, 25">
+		<StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" >
+			<Button VerticalAlignment="Center" Margin="10,0,0,0" Command="{Binding PopNewWindowCommand}">New Window</Button>
+			<Button VerticalAlignment="Center" Margin="10,0,0,0" >Future</Button>
+			<Button VerticalAlignment="Center" Margin="10,0,0,0" >Future</Button>
+		</StackPanel>
+		<Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+			<Label>Main Content</Label>
+		</Grid>
+		<StackPanel Grid.Row="2" HorizontalAlignment="Center">
+			<Label>Footer</Label>
+		</StackPanel>
+	</Grid>
+</Window>

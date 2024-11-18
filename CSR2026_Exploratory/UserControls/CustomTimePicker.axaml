@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="40"
+             x:Class="CSR2026_Exploratory.CustomTimePicker"
+			 xmlns:vm="using:CSR2026_Exploratory"
+			 x:DataType="vm:CustomTimePicker">
+	<Grid>
+		<Grid.Styles>
+			<Style Selector="TextBox.customStyle">
+				<Setter Property="MinWidth" Value="34" />
+				<Setter Property="FontSize" Value="14" />
+				<Setter Property="VerticalContentAlignment" Value="Bottom" />
+				<Setter Property="HorizontalContentAlignment" Value="Center" />
+				<Setter Property="Padding" Value="5,0,5,3" />
+			</Style>
+		</Grid.Styles>
+		<TextBox Name="txtInput" VerticalContentAlignment="Center" FontSize="16" FontWeight="Light"/>
+		<StackPanel Orientation="Horizontal">
+			<TextBox Name="txtHours"
+					   Foreground="Black" Text="HH" VerticalAlignment="Center" HorizontalAlignment="Center"
+					   Margin="5,0,0,0" BorderThickness="0" Background="Transparent" Classes="customStyle"/>
+			<TextBlock Name="txtColon" FontSize="14" FontWeight="Light"
+					   Foreground="Black" Text=":" VerticalAlignment="Center" HorizontalAlignment="Left"
+					   Margin="-2,7,-2,0" IsHitTestVisible="False" Background="Transparent"/>
+			<TextBox x:Name="txtMinutes"
+					   Foreground="Black" Text="MM" VerticalAlignment="Center" HorizontalAlignment="Left"
+					   Margin="0,0,0,0" BorderThickness="0" Background="Transparent" Classes="customStyle"/>
+			<TextBox x:Name="txtAMPM"
+					   Foreground="Black" Text="AM" VerticalAlignment="Center" HorizontalAlignment="Left"
+					   Margin="0,0,0,0" BorderThickness="0" Background="Transparent" Classes="customStyle" />
+		</StackPanel>
+		<Button Name="btnUp" Width="20" Height="19" HorizontalAlignment="Right" VerticalAlignment="Top"
+				Content="˄" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+				Background="LightGray" Foreground="Black" BorderThickness="0" CornerRadius="0,3,0,0" Margin="0,1,1,0" Padding="0,0,0,0"/>
+		<Button Name="btnDown" Width="20" Height="19" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+				Content="˅" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+				Background="LightGray" Foreground="Black" BorderThickness="0" CornerRadius="0,0,3,0" Margin="0,0,1,1" Padding="0,0,0,0"/>
+	</Grid>
+</UserControl>

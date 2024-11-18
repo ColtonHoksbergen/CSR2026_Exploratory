@@ -1,0 +1,20 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="CSR2026_Exploratory.App"
+             xmlns:local="using:CSR2026_Exploratory"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <FluentTheme />
+		<StyleInclude Source="avares://CSR2026_Exploratory/Styles/ButtonStyles.axaml" />
+		<StyleInclude Source="avares://CSR2026_Exploratory/Styles/LabelStyles.axaml" />
+		<StyleInclude Source="avares://CSR2026_Exploratory/Styles/CheckboxStyles.axaml" />
+		<StyleInclude Source="avares://CSR2026_Exploratory/Styles/ComboBoxStyles.axaml" />
+		<StyleInclude Source="avares://CSR2026_Exploratory/Styles/TextBoxStyles.axaml" />
+    </Application.Styles>
+</Application>

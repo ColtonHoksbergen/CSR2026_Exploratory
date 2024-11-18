@@ -1,0 +1,200 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:UserControls="using:CSR2026_Exploratory"
+		xmlns:vm="using:CSR2026_Exploratory.ViewModels.WindowViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="CSR2026_Exploratory.VehicleFirstNoticeWindow"
+        Title="Vehicle First Notice Window"
+        x:DataType="vm:VehicleFirstNoticeWindowViewModel"
+		Height="435" Width="907"
+		MinWidth="907" MinHeight="435">
+	
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:VehicleFirstNoticeWindowViewModel/>
+	</Design.DataContext>
+
+	<Grid ColumnDefinitions="*,*, 80">
+
+		<!--Carrier Information Grid, Contact Information Grid-->
+		<Grid Grid.Column="0" RowDefinitions="auto, auto, *">
+
+			<!--Carrier Information Grid-->
+			<Grid Grid.Row="0" Background="LightYellow">
+				<Grid RowDefinitions="20,42,42,42,20" ColumnDefinitions="*, *" Margin="5,5,5,5">
+					<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontWeight="Bold">Carrier Information</Label>
+
+					<!--Company/Adjuster Row-->
+					<Panel Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" Margin="0,3,0,0">
+						<ComboBox Classes="customComboBox"
+								  ItemsSource="{Binding Path=CarrierCompanyItems}"
+								  SelectedItem="{Binding CarrierCompanyItemSelection, Mode=TwoWay}" />
+						<Label Classes="containerLabel" >Company</Label>
+					</Panel>
+					<Panel Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" Margin="5,3,0,0">
+						<ComboBox Classes="customComboBox"
+								  ItemsSource="{Binding Path=AdjusterItems}"
+								  SelectedItem="{Binding AdjusterItemSelection}" />
+						<Label Classes="containerLabel">Adjuster</Label>
+					</Panel>
+
+					<!--Business Unit Row-->
+					<Panel Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" Margin="0,3,0,0">
+						<ComboBox Classes="customComboBox"
+								  ItemsSource="{Binding Path=BusinessUnitItems}"
+								  SelectedItem="{Binding BusinessUnitItemSelection}" />
+						<Label Classes="containerLabel">Business Unit</Label>
+					</Panel>
+					<StackPanel Grid.Row="2" Grid.Column="1" Margin="5,5,0,0">
+						<Label Margin="0,-4,0,0" FontSize="12">Phone:</Label>
+						<Label Margin="0,-6,0,0" FontSize="12">Email:</Label>
+					</StackPanel>
+
+					<!--Program Row-->
+					<Panel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Margin="0,3,0,0">
+						<ComboBox Classes="customComboBox"
+								  ItemsSource="{Binding Path=ProgramCodeItems}"
+								  SelectedItem="{Binding ProgramCodeSelection}"/>
+						<Label Classes="containerLabel">Program Code</Label>
+					</Panel>
+
+					<!--Prefixes Row-->
+					<Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">Prefixes:</Label>
+				</Grid>
+			</Grid>
+
+			<!--Contact Information Grid-->
+			<Grid Grid.Row="1" Background="LightBlue">
+				<Grid RowDefinitions="20,42,42,42" ColumnDefinitions="*,*,*" Margin="5,5,5,0">
+					<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center">Contact Information</Label>
+
+					<!--First Name, Last Name, Phone Number Row-->
+					<Panel Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" Margin="0,3,0,0">
+						<TextBox Classes="customTextBox" Text="{Binding VehicleFirstNoticeViewModel.ContactFirstName}" VerticalContentAlignment="Bottom" />
+						<Label Classes="containerLabel">First Name</Label>
+					</Panel>
+					<Panel Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" Margin="5,3,0,0">
+						<TextBox Classes="customTextBox" Text="{Binding VehicleFirstNoticeViewModel.ContactLastName}" VerticalContentAlignment="Bottom"/>
+						<Label Classes="containerLabel">Last Name</Label>
+					</Panel>
+					<Panel Grid.Row="1" Grid.Column="2" VerticalAlignment="Stretch" Margin="5,3,0,0">
+						<TextBox Classes="customTextBox" Text="{Binding VehicleFirstNoticeViewModel.ContactPhone}" VerticalContentAlignment="Bottom"/>
+						<Label Classes="containerLabel">Phone Number</Label>
+					</Panel>
+
+					<!--Contact Email, Preferred Contact-->
+					<Panel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Margin="0,3,0,0">
+						<TextBox Classes="customTextBox" Text="{Binding VehicleFirstNoticeViewModel.ContactEmail}" VerticalContentAlignment="Bottom"/>
+						<Label Classes="containerLabel">Contact Email</Label>
+					</Panel>
+					<Panel Grid.Row="2" Grid.Column="2" VerticalAlignment="Stretch" Margin="5,3,0,0">
+						<ComboBox Classes="customComboBox"
+								  ItemsSource="{Binding Path=ContactMethods}"
+								  SelectedItem="{Binding VehicleFirstNoticeViewModel.PreferredContactMethod}" />
+						<Label Classes="containerLabel">Preferred Contact</Label>
+					</Panel>
+
+					<!--Callback Row-->
+					<Panel Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" Margin="0,3,0,0">
+						<CheckBox Classes="customCheck" Margin="5,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" IsChecked="{Binding TestBool}" FontSize="13" >Callback Requested</CheckBox>
+					</Panel>
+					<Panel Grid.Row="3" Grid.Column="1" VerticalAlignment="Stretch" Margin="5,3,0,0">
+						<CalendarDatePicker VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="5,10,0,0"/>
+						<Label Classes="containerLabel">Callback Date</Label>
+					</Panel>
+					<Panel Grid.Row="3" Grid.Column="2" VerticalAlignment="Stretch" Margin="5,3,0,0">
+						<UserControls:CustomTimePicker TimeSpan="{Binding VehicleFirstNoticeViewModel.PreferredContactTime, Mode=TwoWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+						<Label Classes="containerLabel">Callback Time</Label>
+					</Panel>
+				</Grid>
+			</Grid>
+			<Grid Grid.Row="2" Background="LightBlue">
+				<Panel Margin="5,5,5,5">
+					<TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="10,20,0,0"/>
+					<Label Margin="5,0,0,0">Adjuster Remarks</Label>
+				</Panel>
+			</Grid>
+		</Grid>
+
+		<!--Loss Information Column-->
+		<Grid Grid.Column="1" RowDefinitions="auto, *">
+			<!--Loss Information Grid-->
+			<Grid Grid.Row="0" Background="LightGreen">
+				<Grid RowDefinitions="20,42,42,42,42" ColumnDefinitions="*, *, *" Margin="5,5,5,5">
+					<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="Bold">Loss Information</Label>
+
+					<!--Loss Date, Loss Time, Reference Number-->
+					<Panel Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" Margin="0,3,0,0">
+						<CalendarDatePicker VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="5,10,0,0"/>
+						<Label Classes="containerLabel">Date of Loss</Label>
+					</Panel>
+					<Panel Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" Margin="5,3,0,0">
+						<UserControls:CustomTimePicker  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+						<Label Classes="containerLabel">Loss Time</Label>
+					</Panel>
+					<Panel Grid.Row="1" Grid.Column="2" VerticalAlignment="Stretch" Margin="5,3,0,0">
+						<TextBox Classes="customTextBox" Text="{Binding TestString}" VerticalContentAlignment="Bottom" />
+						<Label Classes="containerLabel">Reference Number</Label>
+					</Panel>
+
+					<!--Claim Number, Loss Address-->
+					<Panel Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" Margin="0,3,0,0">
+						<TextBox Classes="customTextBox" Text="{Binding TestString}" VerticalContentAlignment="Bottom" />
+						<Label Classes="containerLabel">Claim Number</Label>
+					</Panel>
+					<Panel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Margin="5,3,0,0">
+						<TextBox Classes="customTextBox" Text="{Binding TestString}" VerticalContentAlignment="Bottom" />
+						<Label Classes="containerLabel">Loss Address</Label>
+					</Panel>
+
+					<!--Claim Number, Loss Address-->
+					<Panel Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" Margin="0,3,0,0">
+						<TextBox Classes="customTextBox" Text="{Binding TestString}" VerticalContentAlignment="Bottom" />
+						<Label Classes="containerLabel">Zip</Label>
+					</Panel>
+					<Panel Grid.Row="3" Grid.Column="1" VerticalAlignment="Stretch" Margin="5,3,0,0">
+						<TextBox Classes="customTextBox" Text="{Binding TestString}" VerticalContentAlignment="Bottom" />
+						<Label Classes="containerLabel">City</Label>
+					</Panel>
+					<Panel Grid.Row="3" Grid.Column="2" VerticalAlignment="Stretch" Margin="5,3,0,0">
+						<TextBox Classes="customTextBox" Text="{Binding TestString}" VerticalContentAlignment="Bottom" />
+						<Label Classes="containerLabel">State</Label>
+					</Panel>
+
+					<!--Checkbox Row-->
+					<Panel Grid.Row="4" Grid.Column="0" VerticalAlignment="Stretch" Margin="0,3,0,0">
+						<CalendarDatePicker VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="5,10,0,0"/>
+						<Label Classes="containerLabel">Reported to Employer</Label>
+					</Panel>
+					<Panel Grid.Row="4" Grid.Column="1" VerticalAlignment="Stretch" Margin="0,3,0,0">
+						<CheckBox Classes="customCheck" Margin="5,-7,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" IsChecked="{Binding TestBool}" FontSize="13" >
+							Fuel Spill
+						</CheckBox>
+						<CheckBox Classes="customCheck" Margin="5,45,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsChecked="{Binding TestBool}" FontSize="13" >
+							Under Dispatch
+						</CheckBox>
+					</Panel>
+					<Panel Grid.Row="4" Grid.Column="2" VerticalAlignment="Stretch" Margin="0,3,0,0">
+						<CheckBox Classes="customCheck" Margin="5,-7,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" IsChecked="{Binding TestBool}" FontSize="13" >
+							Hauling Cargo
+						</CheckBox>
+					</Panel>
+				</Grid>
+			</Grid>
+			<Grid Grid.Row="1" Background="LightGreen">
+				<Panel Margin="5,0,5,5">
+					<TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="10,20,0,0"/>
+					<Label Margin="5,0,0,0">Loss Description</Label>
+				</Panel>
+			</Grid>
+		</Grid>
+
+		<StackPanel Grid.Column="2">
+			<Button Content="Submit" Width="75" Height="50" HorizontalAlignment="Center" Margin="0,26,0,0" Command="{Binding SubmitCommand}"/>
+			<Button Content="New" Width="75" Height="50" HorizontalAlignment="Center" Margin="0,5,0,0" Command="{Binding PopNewWindowCommand}"/>
+		</StackPanel>
+	</Grid>
+</Window>
