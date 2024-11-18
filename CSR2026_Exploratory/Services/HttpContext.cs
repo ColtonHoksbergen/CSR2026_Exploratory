@@ -16,7 +16,7 @@ namespace CSR2026_Exploratory.Services
         public HttpContext()
         {
             // Optionally configure the HttpClient
-            HttpClient.BaseAddress = new Uri("API URI STRING");
+            //HttpClient.BaseAddress = new Uri("API URI STRING");
             HttpClient.Timeout = TimeSpan.FromSeconds(30);
         }
     }
